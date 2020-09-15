@@ -100,12 +100,13 @@ class CameraManager:
         now = datetime.datetime.now()
         if not os.path.exists(os.path.join(os.getcwd(), "recordings")):
             os.mkdir(os.path.join(os.getcwd(), "recordings"))
-        self.output_directory = os.path.join(os.getcwd(), "recordings", now.strftime('20%y-%m-%d-%H-%M'))
-        if os.path.exists(self.output_directory):
-            while os.path.exists(self.output_directory):
-                self.output_directory += "a"
-        os.mkdir(self.output_directory)
-        assert os.path.exists(self.output_directory)
+        if self.record or self.save_params or self.snapshot_mode:
+            self.output_directory = os.path.join(os.getcwd(), "recordings", now.strftime('20%y-%m-%d-%H-%M'))
+            if os.path.exists(self.output_directory):
+                while os.path.exists(self.output_directory):
+                    self.output_directory += "a"
+            os.mkdir(self.output_directory)
+            assert os.path.exists(self.output_directory)
 
         # Wait for exposure to balance
         print("Warming up")
@@ -114,7 +115,6 @@ class CameraManager:
         # Write each cameras parameters to json file
         if self.save_params:
             self.save_intrinsics(self.output_directory, self.device_manager.poll_frames())
-
 
         print("Loaded lab manager " + str(self.width) + " " + str(self.height) + " " + str(self.fps))
 
@@ -196,7 +196,6 @@ class CameraManager:
         """
         Creates a new timestamped folder and loads a new video writer for each enabled device
         """
-
         for device in self.device_manager._enabled_devices:
             os.mkdir(os.path.join(self.output_directory, device))
             print(f"Writing videos to {os.path.join(self.output_directory, device)}")
@@ -297,7 +296,9 @@ class CameraManager:
             json.dump(clean_intrinsics, fp)
 
     def stringify_keys(self, d):
-        """Convert a dict's keys to strings if they are not."""
+        """
+        Convert a dict's keys to strings if they are not.
+        """
         for key in d.keys():
 
             # check inner dict
