@@ -1,3 +1,4 @@
 pyrealsense2
-python-opencv
+opencv-python
 numpy
+regex

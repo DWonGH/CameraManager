@@ -8,7 +8,7 @@ cd CameraManager
 ```
 4. Create a conda or python virtual environment e.g.
 ```
-conda create -n living_lab_manager python=3.6
+conda create -y -n living_lab_manager python=3.6
 conda activate living_lab_manager
 ```
 5. Install the python requirements

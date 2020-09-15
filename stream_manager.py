@@ -13,7 +13,7 @@ from realsense_device_manager import DeviceManager
 
 class CameraManager:
 
-    def __init__(self, width, height, fps, flip, display, record, control_room, specified_devices,
+    def __init__(self, width, height, fps, flip, display, record, lab_monitor, specified_devices,
                  snapshot_timer, num_snapshots, snapshot_interval, snapshot_mode, save_params):
         """
         Manage the RealSense output streams
@@ -24,7 +24,7 @@ class CameraManager:
         self.flip = flip  # True to flip cameras vertically when in the living lab
         self.display = display  # True to enable display windows
         self.record = record  # True to enable video writers
-        self.control_room = control_room  # Adjust display window sizes for control room or lab monitors (i.e. high / low resolution monitors)
+        self.lab_monitor = lab_monitor  # Adjust display window sizes for control room or lab monitors (i.e. high / low resolution monitors)
         self.specified_devices = specified_devices  # A list of specified camera serial numbers to be run
         self.snapshot_mode = snapshot_mode  # True to take pictures instead of videos
         self.snapshot_timer = snapshot_timer  # Countdown in seconds till picture taken
@@ -63,7 +63,7 @@ class CameraManager:
 
         # Set window positions for known cameras based on integer tiling in a 3x3 grid, roughly reflecting their
         # positions in the lab:
-        if self.control_room:
+        if self.lab_monitor:
             self.default_win_size = (int(1920/3), int(1080/3))  # Good for 1920x1080 display, e.g. monitor in control room
         else:
             self.default_win_size = (int(1920/5), int(1080/5))  # Good for Living Lab TV when using low resolution.
