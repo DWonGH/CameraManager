@@ -291,7 +291,6 @@ class CameraManager:
                     'd4': res[2].split(" ")[3],
                     'd5': res[2].split(" ")[4]
                 }
-        import json
         with open(os.path.join(directory, 'intrinsics.json'), 'w') as fp:
             json.dump(clean_intrinsics, fp)
 

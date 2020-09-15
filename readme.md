@@ -3,8 +3,8 @@
 2. After installation copy realsense2.pyd and realsense2.dll from the bin directory of the installation (e.g. “C:\Program Files\IntelrealsenseSDK 2.0\bin”) into either the python or anaconda site-packages folder installed on the machine (e.g. “C:\Anaconda\Lib\site-packages”).
 3. Clone this repo.
 ```
-git clone https://github.com/d3-worgan/LabManager2.0.git
-cd LabManager2.0
+git clone https://github.com/d3-worgan/CameraManager.git
+cd CameraManager
 ```
 4. Create a conda or python virtual environment e.g.
 ```
