@@ -98,6 +98,8 @@ class CameraManager:
 
         # Configure the output directory for recordings
         now = datetime.datetime.now()
+        if not os.path.exists(os.path.join(os.getcwd(), "recordings")):
+            os.mkdir(os.path.join(os.getcwd(), "recordings"))
         self.output_directory = os.path.join(os.getcwd(), "recordings", now.strftime('20%y-%m-%d-%H-%M'))
         if os.path.exists(self.output_directory):
             while os.path.exists(self.output_directory):
