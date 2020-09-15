@@ -56,8 +56,10 @@ class CameraManager:
         assert (len(self.device_manager._available_devices) > 0), \
             "Camera initialisation failed; there are no available devices"
 
+        print(f"Specified devices {self.specified_devices}")
         self.enabled_devices = []
-        all(self.enabled_devices.append(serial) for (serial, device) in self.device_manager._enabled_devices.items())
+        for (serial, device) in self.device_manager._enabled_devices.items():
+            self.enabled_devices.append(serial)
         for device in self.specified_devices:
             assert device in self.enabled_devices, "Specified device is not connected / failed to connect"
 
