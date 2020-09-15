@@ -8,7 +8,7 @@ import pyrealsense2 as rs
 import numpy as np
 import cv2
 
-from realsense_device_manager import DeviceManager
+from modules.realsense_device_manager import DeviceManager
 
 
 class CameraManager:

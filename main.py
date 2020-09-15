@@ -1,7 +1,7 @@
 import os
 import argparse
 
-from stream_manager import CameraManager
+from modules.stream_manager import CameraManager
 
 cwd = os.path.abspath(os.getcwd())
 
