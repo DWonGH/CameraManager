@@ -284,6 +284,8 @@ class CameraManager:
                 params = streams[stream].split('p')
                 res = re.findall("\[(.*?)\]", params[1])
                 clean_intrinsics[camera] = {
+                    'width': self.width,
+                    'height': self.height,
                     'fx': res[1].split(" ")[0],
                     'fy': res[1].split(" ")[1],
                     'cx': res[0].split(" ")[0],
