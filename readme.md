@@ -15,7 +15,7 @@ conda activate living_lab_manager
 ```
 pip install -r requirements.txt
 ```
-##Example usage
+## Example usage
 
 Display each connected camera
 ```
