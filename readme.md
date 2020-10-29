@@ -1,3 +1,6 @@
+# RealSense Camera Manager
+An application to view and record data from the connected RealSense camera devices.
+
 ## Installation (Windows)
 1. Need to install the [RealSense SDK](https://github.com/IntelRealSense/librealsense) by downloading the installer in the latest [release](https://github.com/IntelRealSense/librealsense/releases); make sure the python developer package is ticked during in the installation.
 2. After installation copy realsense2.pyd and realsense2.dll from the bin directory of the installation (e.g. “C:\Program Files\IntelrealsenseSDK 2.0\bin”) into either the python or anaconda site-packages folder installed on the machine (e.g. “C:\Anaconda\Lib\site-packages”).
