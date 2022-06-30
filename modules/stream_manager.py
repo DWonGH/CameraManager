@@ -30,7 +30,7 @@ class CameraManager:
         self.snapshot_timer = snapshot_timer  # Countdown in seconds till picture taken
         self.num_snapshots = num_snapshots  # How many pictures to take
         self.snapshot_interval = snapshot_interval  # Time in seconds between pictures
-        self.save_params = save_params
+        self.save_params = True
 
         assert width > 0, "Invalid width resolution"
         assert height > 0, "Invalid height resolution"
@@ -201,8 +201,8 @@ class CameraManager:
         for device in self.device_manager._enabled_devices:
             os.mkdir(os.path.join(self.output_directory, device))
             print(f"Writing videos to {os.path.join(self.output_directory, device)}")
-            fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-            writer = cv2.VideoWriter(os.path.join(self.output_directory, device, f"1.avi"), fourcc, self.fps, (self.width, self.height))
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+            writer = cv2.VideoWriter(os.path.join(self.output_directory, device, f"1.mp4"), fourcc, self.fps, (self.width, self.height))
             self.video_writers[device] = writer
 
     def load_display_windows(self):
