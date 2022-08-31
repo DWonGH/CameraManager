@@ -30,18 +30,20 @@ class CameraManager:
         self.snapshot_timer = snapshot_timer  # Countdown in seconds till picture taken
         self.num_snapshots = num_snapshots  # How many pictures to take
         self.snapshot_interval = snapshot_interval  # Time in seconds between pictures
-        self.save_params = True
+        self.save_params = False
 
         assert width > 0, "Invalid width resolution"
         assert height > 0, "Invalid height resolution"
         assert fps > 0, "Invalid frames per second (fps)"
         if self.record:
             assert not self.snapshot_mode, "Should only use record when in video mode (not snapshot mode)"
+            self.save_params = True
         if self.snapshot_mode:
             assert not self.record, "Should only use record when in video mode (not snapshot mode)"
             assert self.num_snapshots > 0
             assert self.snapshot_interval >= 0
             assert self.snapshot_timer >= 0
+            self.save_params = True
 
         # Prepare specified configuration (depth & infrared not implemented)
         self.rs_config = rs.config()  # For initialising RealSense
@@ -157,7 +159,7 @@ class CameraManager:
                     final_frame = self.flip_frame(frame)
                 else:
                     final_frame = np.asarray(frame[rs.stream.color].get_data())
-                cv2.imwrite(os.path.join(self.output_directory, device, f"{snap}.jpg"), final_frame)
+                cv2.imwrite(os.path.join(self.output_directory, device, f"{snap}.png"), final_frame)
                 if self.display:
                     window = self.display_windows[device]
                     cv2.imshow(window, final_frame)
